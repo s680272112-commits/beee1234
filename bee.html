@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตำราดูดวงชะตาประจำปีเกิด - เกณฑ์นับเจดีย์โบราณ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FFF9E6',
+                            300: '#FCE082',
+                            400: '#F3C044',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                            700: '#866304',
+                        },
+                        crimson: {
+                            700: '#8B0000',
+                            800: '#660000',
+                            900: '#4A0000',
+                        },
+                        thaiDark: '#120803',
+                    },
+                    fontFamily: {
+                        charm: ['Charm', 'cursive', 'serif'],
+                        sarabun: ['Sarabun', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #120803;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.2) 0%, transparent 50%);
+            color: #f3e8c8;
+            min-height: 100vh;
+        }
+
+        .font-thai-title {
+            font-family: 'Charm', cursive;
+        }
+
+        /* Gold Gradient Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FCE082 30%, #D4AF37 70%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Metallic Gold Border */
+        .gold-border {
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #FCE082, #D4AF37, #866304, #FCE082) 1;
+        }
+
+        .gold-box-shadow {
+            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.3),
+                        0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Traditional Pattern Overlay */
+        .thai-pattern-bg {
+            background-color: rgba(20, 10, 5, 0.85);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M30 30L15 0H0v15l30 30 30-30V0H45L30 30zM15 60L30 30l15 30H60V45L30 15 0 45v15h15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Wheel Rotations & SVG Canvas */
+        .wheel-container {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 1;
+            margin: 0 auto;
+        }
+
+        /* Active highlight effect on wheel slice */
+        .slice-highlight {
+            filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.9));
+            transition: all 0.3s ease;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        .pulse-gold {
+            animation: pulse-gold 2.5s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a0d05;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body class="flex flex-col min-h-screen text-amber-100 antialiased selection:bg-amber-500 selection:text-black">
+
+    <header class="relative border-b border-amber-600/30 bg-gradient-to-b from-crimson-900 via-amber-950/80 to-transparent py-8 px-4 text-center shadow-lg backdrop-blur-md">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-3 mb-2">
+                <span class="text-amber-400 text-2xl">☸</span>
+                <span class="text-amber-400 text-sm tracking-widest uppercase font-semibold">ตำราพรหมชาติโบราณ</span>
+                <span class="text-amber-400 text-2xl">☸</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold font-thai-title gold-gradient-text drop-shadow-md mb-3">
+                ทำนายชะตาประจำปีเกิด
+            </h1>
+            <p class="text-amber-200/80 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                เกณฑ์คำนวณอายุตก "เจดีย์ 12 ราศี" ตรวจดวงชะตาประจำปีตามคติโบราณไทย ชายเวียนขวา หญิงเวียนซ้าย
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-4">
+
+        <section class="lg:col-span-6 flex flex-col items-center gap-6">
+            
+            <!-- User Input Form Box -->
+            <div class="w-full thai-pattern-bg p-6 rounded-2xl border border-amber-500/40 shadow-xl gold-box-shadow backdrop-blur-sm">
+                <h2 class="text-xl font-bold text-amber-300 font-thai-title mb-4 flex items-center gap-2 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid font-normal fa-scroll text-amber-400"></i> กรอกข้อมูลเพื่อคำนวณดวงชะตา
+                </h2>
+
+                <form id="fortuneForm" onSubmit="calculateFortune(event)" class="space-y-5">
+                    <!-- Gender Selection -->
+                    <div>
+                        <label class="block text-sm font-medium text-amber-200 mb-2">เพศ (ตามตำรา):</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="gender" value="male" checked class="peer hidden">
+                                <div class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-amber-600/40 bg-black/40 peer-checked:bg-amber-500 peer-checked:text-black peer-checked:border-amber-300 transition-all font-semibold">
+                                    <i class="fa-solid fa-mars text-lg"></i>
+                                    <span>ชาย (เวียนขวา)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="gender" value="female" class="peer hidden">
+                                <div class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-amber-600/40 bg-black/40 peer-checked:bg-amber-500 peer-checked:text-black peer-checked:border-amber-300 transition-all font-semibold">
+                                    <i class="fa-solid fa-venus text-lg"></i>
+                                    <span>หญิง (เวียนซ้าย)</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Age Input -->
+                    <div>
+                        <label for="ageInput" class="block text-sm font-medium text-amber-200 mb-1">
+                            อายุปัจจุบัน (นับแบบย่าง หรือนับตามปีเต็ม):
+                        </label>
+                        <div class="relative">
+                            <input type="number" id="ageInput" min="1" max="120" value="25" required
+                                class="w-full bg-black/60 border border-amber-500/50 rounded-xl py-3 px-4 pl-11 text-amber-100 text-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent">
+                            <i class="fa-solid fa-cake-candles absolute left-4 top-1/2 -translate-y-1/2 text-amber-500/70"></i>
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-amber-400/60 text-sm">ปี</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="btnCalculate"
+                        class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold text-lg shadow-lg hover:shadow-amber-500/30 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
+                        <i class="fa-solid fa-compass text-amber-950"></i>
+                        <span>ทำนายดวงชะตา</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="w-full flex flex-col items-center">
+                <div class="wheel-container p-2">
+                    <!-- SVG Visual Circle Wheel -->
+                    <svg id="destinyWheel" viewBox="0 0 500 500" class="w-full h-full drop-shadow-2xl">
+                        <!-- Definitions for Gradients -->
+                        <defs>
+                            <radialGradient id="goldBg" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#2a1405" />
+                                <stop offset="80%" stop-color="#120803" />
+                                <stop offset="100%" stop-color="#4a0000" />
+                            </radialGradient>
+                            
+                            <linearGradient id="goldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FCE082" />
+                                <stop offset="50%" stop-color="#D4AF37" />
+                                <stop offset="100%" stop-color="#866304" />
+                            </linearGradient>
+
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Outer Decorative Rings -->
+                        <circle cx="250" cy="250" r="242" fill="url(#goldBg)" stroke="url(#goldBorderGrad)" stroke-width="6" />
+                        <circle cx="250" cy="250" r="232" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6" />
+                        <circle cx="250" cy="250" r="135" fill="none" stroke="url(#goldBorderGrad)" stroke-width="2" />
+
+                        <!-- Wheel Slices Container (Generated dynamically or rendered via JS) -->
+                        <g id="wheelSlicesGroup"></g>
+
+                        <!-- Center Info Circle -->
+                        <circle cx="250" cy="250" r="95" fill="#1c0b02" stroke="url(#goldBorderGrad)" stroke-width="4" />
+                        <circle cx="250" cy="250" r="88" fill="none" stroke="#D4AF37" stroke-width="1" stroke-dasharray="3 3" opacity="0.5" />
+
+                        <!-- Center Text Guidelines -->
+                        <g text-anchor="middle" dominant-baseline="middle" class="font-thai-title">
+                            <text x="250" y="210" fill="#FCE082" font-size="20" font-weight="bold">ทำนายประจำปีเกิด</text>
+                            <text x="250" y="235" fill="#e2d8b2" font-size="12">ชาย : นับเริ่มจากเจดีย์ เวียนขวา</text>
+                            <text x="250" y="255" fill="#e2d8b2" font-size="12">หญิง : นับเริ่มจากเจดีย์ เวียนซ้าย</text>
+                            <text x="250" y="278" fill="#D4AF37" font-size="13" font-weight="bold" id="centerDirectionText">วนจนครบอายุปัจจุบัน</text>
+                        </g>
+
+                        <!-- Counting Indicator Ball/Highlight (Animates during count) -->
+                        <circle id="animBall" cx="250" cy="340" r="10" fill="#FFD700" stroke="#FFFFFF" stroke-width="2" filter="url(#glow)" class="opacity-0 transition-all duration-300"></circle>
+                    </svg>
+                </div>
+                <div class="text-xs text-amber-300/60 text-center mt-2 flex items-center gap-1">
+                    <i class="fa-solid fa-info-circle"></i>
+                    <span>หมายเหตุ: ลำดับช่องที่ 1 (เจดีย์) จะเริ่มอยู่ที่ตำแหน่งล่างสุดตรงกลาง</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="lg:col-span-6 h-full flex flex-col justify-between">
+            <div id="resultCard" class="thai-pattern-bg p-6 md:p-8 rounded-2xl border border-amber-500/40 shadow-2xl gold-box-shadow backdrop-blur-sm relative overflow-hidden min-h-[520px] flex flex-col justify-between">
+                
+                <!-- Background Thai Decorative Accent -->
+                <div class="absolute -right-12 -bottom-12 opacity-5 pointer-events-none text-amber-300 text-9xl">
+                    ☸
+                </div>
+
+                <!-- Initial Empty State -->
+                <div id="emptyState" class="my-auto text-center py-12 px-4">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-3xl pulse-gold">
+                        <i class="fa-solid fa-om"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-thai-title gold-gradient-text mb-2">พร้อมตรวจดวงชะตา</h3>
+                    <p class="text-amber-200/70 text-sm max-w-md mx-auto">
+                        เลือกเพศและระบุอายุปัจจุบันของคุณ จากนั้นกดปุ่ม <span class="text-amber-300">"ทำนายดวงชะตา"</span> เพื่อเปิดคำทำนายประจำปีตามตำราเจดีย์โบราณ
+                    </p>
+                </div>
+
+                <!-- Active Result Display (Hidden initially) -->
+                <div id="resultContent" class="hidden space-y-6">
+                    
+                    <!-- Top Status Badge & Title -->
+                    <div class="border-b border-amber-500/30 pb-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <span id="genderAgeBadge" class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-semibold">
+                                ชาย • อายุ 25 ปี
+                            </span>
+                            <span id="stepCountBadge" class="text-xs text-amber-400/80 font-mono">
+                                ตกช่องที่ 1 จากการนับ 25 ครั้ง
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-4 mt-3">
+                            <div id="resultIconBox" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-amber-950 text-3xl shadow-lg shrink-0">
+                                🏰
+                            </div>
+                            <div>
+                                <span class="text-xs text-amber-400 tracking-wider">ตกดวงชะตาช่องที่</span>
+                                <h3 id="resultTitle" class="text-3xl font-bold font-thai-title gold-gradient-text">
+                                    เจดีย์ (เจดีย์ทอง)
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Prediction Text -->
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-star text-xs"></i> คำทำนายดวงชะตาปีนี้
+                            </h4>
+                            <p id="resultPrediction" class="text-amber-100 text-base md:text-lg leading-relaxed bg-black/40 p-4 rounded-xl border border-amber-500/20">
+                                --
+                            </p>
+                        </div>
+
+                        <!-- Pros / Cons Outlook -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-amber-950/40 border border-amber-500/20 p-3 rounded-xl">
+                                <span class="text-xs text-emerald-400 font-semibold block mb-1">
+                                    <i class="fa-solid fa-circle-check"></i> ข้อดี / โชคลาภ
+                                </span>
+                                <p id="resultGood" class="text-xs text-amber-200/90 leading-relaxed">--</p>
+                            </div>
+                            <div class="bg-amber-950/40 border border-amber-500/20 p-3 rounded-xl">
+                                <span class="text-xs text-rose-400 font-semibold block mb-1">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> ข้อควรระวัง
+                                </span>
+                                <p id="resultCaution" class="text-xs text-amber-200/90 leading-relaxed">--</p>
+                            </div>
+                        </div>
+
+                        <!-- Advice / Merit making -->
+                        <div>
+                            <h4 class="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-hand-holding-heart text-xs"></i> แนวทางเสริมดวง / สะเดาะเคราะห์
+                            </h4>
+                            <p id="resultAdvice" class="text-amber-200/90 text-sm leading-relaxed bg-amber-900/20 p-3.5 rounded-xl border border-amber-500/30">
+                                --
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-4 border-t border-amber-500/20 flex flex-wrap gap-3">
+                        <button onClick="shareResult()" class="flex-1 py-2.5 px-4 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-medium text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-share-nodes"></i> คัดลอกผลทำนาย
+                        </button>
+                        <button onClick="window.print()" class="py-2.5 px-4 rounded-xl bg-black/40 hover:bg-black/60 border border-amber-500/30 text-amber-200 text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-print"></i> พิมพ์
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Toast Notification for Share -->
+                <div id="toast" class="hidden absolute bottom-4 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-950 font-bold px-4 py-2 rounded-lg shadow-xl text-xs flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span id="toastMsg">คัดลอกผลคำทำนายเรียบร้อยแล้ว!</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-auto border-t border-amber-600/20 bg-black/60 py-4 text-center text-xs text-amber-400/60">
+        <p>ตำราทำนายชะตาประจำปีเกิด (เกณฑ์นับเจดีย์) • อ้างอิงตามคติพรหมชาติโบราณไทย</p>
+        <p> นางสาวกฤติยา กสิการ 680272-112</p>
+    </footer>
+
+    <script>
+        // 12 Astrology Slots Data (Ordered clockwise starting from Pagoda / เจดีย์ at index 0)
+        const DESTINY_SLOTS = [
+            {
+                id: 1,
+                name: "เจดีย์ (เจดีย์ทอง)",
+                icon: "🛕",
+                summary: "ตกเจดีย์ จะมีความสุขความเจริญ สมบูรณ์พูนสุข บุญบารมีสูงส่ง",
+                good: "มีบุญบารมีสนับสนุน ได้รับความสุขกายสบายใจ การงานเจริญก้าวหน้า",
+                caution: "อย่าประมาทในการดำเนินชีวิต ควรหมั่นสร้างบุญกุศลหนุนนำอย่างต่อเนื่อง",
+                advice: "ทำบุญถวายสังฆทาน ไหว้พระประธานในโบสถ์ หรือร่วมสร้างเจดีย์/บูรณะวัดวาอาราม"
+            },
+            {
+                id: 2,
+                name: "นาคราช",
+                icon: "🐍",
+                summary: "ตกนาคราช มักเจ็บไข้ได้ป่วย มีอุปสรรค ต้องระวังศัตรูมืดและของมีคม",
+                good: "มีสัมผัสพิเศษหรือลางสังหรณ์แม่นยำ หากผ่านพ้นอุปสรรคไปได้จะเข้มแข็งขึ้น",
+                caution: "ระวังโรคภัยไข้เจ็บ อุบัติเหตุจากของมีคม ปัญหาความขัดแย้ง และศัตรูมืด",
+                advice: "ปล่อยปลา ปล่อยสัตว์น้ำ ปล่อยงูหรือไถ่ชีวิตสัตว์ ปล่อยเต่า เสริมดวงสุขภาพ"
+            },
+            {
+                id: 3,
+                name: "แม่มด",
+                icon: "🧙‍♀️",
+                summary: "ตกแม่มด จะได้รับความสนับสนุน มีโชคลาภจากผู้ใหญ่ ได้วิชาความรู้",
+                good: "ผู้ใหญ่เอ็นดูเมตตา ได้รับโชคลาภ วิชาความรู้ หรือโอกาสใหม่ๆ ในชีวิต",
+                caution: "ระวังเรื่องคำพูดและการใช้อารมณ์ อย่าหลงเชื่อคนง่ายโดยไม่ไตร่ตรอง",
+                advice: "กราบไหว้ขอพรผู้มีพระคุณ ครูบาอาจารย์ หรือทำบุญสนับสนุนการศึกษาเด็กยากไร้"
+            },
+            {
+                id: 4,
+                name: "พ่อหมอ",
+                icon: "👨‍⚕️",
+                summary: "ตกพ่อหมอ จะได้ลาภยศตำแหน่ง มีผู้คนนับถือยำเกรง ทำการสิ่งใดก็สำเร็จ",
+                good: "ประสบความสำเร็จในหน้าที่การงาน ได้รับโปรดเกล้าเลื่อนขั้นตำแหน่ง มีผู้นับถือ",
+                caution: "อย่าภาระงานหนักจนเสียสุขภาพ และต้องมีความยุติธรรมไม่ลำเอียง",
+                advice: "ทำบุญบริจาคยา ยารักษาโรค ช่วยเหลือโรงพยาบาลหรือมูลนิธิกู้ภัย"
+            },
+            {
+                id: 5,
+                name: "คนตรวนขอนคา (คนถูกตรวน)",
+                icon: "⛓️",
+                summary: "ตกคนถูกตรวน จะได้รับความยากลำบาก มีเรื่องเดือดเนื้อร้อนใจ ระวังคดีความหรือถูกเบียดเบียน",
+                good: "ฝึกฝนความอดทนและสติ เป็นบททดสอบให้ชีวิตมีความระมัดระวังมากขึ้น",
+                caution: "ระวังคดีความ คดีเรื่องเอกสารสัญญา ถูกใส่ร้ายป้ายสี หรือโดนเบียดเบียนทรัพย์สิน",
+                advice: "ทำบุญไถ่ชีวิตโคกระบือ บริจาคเงินช่วยเหลือผู้ต้องขังยากไร้ หรือร่วมบริจาคโลงศพ"
+            },
+            {
+                id: 6,
+                name: "เทวดาขี่เต่า",
+                icon: "🐢",
+                summary: "ตกเทวดาขี่เต่า เดินทางไกลจะได้ดี แม้ช้าแต่จะมั่นคง มีโชคลาภจากการเดินทาง",
+                good: "มีความมั่นคงในระยะยาว โชคลาภจากการเดินทางไกลหรือติดต่อต่างถิ่นต่างแดน",
+                caution: "งานอาจจะดำเนินไปอย่างล่าช้า ต้องใช้ความอดทนสูง ห้ามใจร้อน",
+                advice: "ปล่อยเต่า ถวายยานพาหนะ หรือทำบุญเกี่ยวกับค่ายานพาหนะเดินทางของพระสงฆ์"
+            },
+            {
+                id: 7,
+                name: "ฉัตรทอง",
+                icon: "👑",
+                summary: "ตกฉัตรทอง จะมียศถาบรรดาศักดิ์ มีเกียรติยศชื่อเสียง เป็นที่ยกย่อง",
+                good: "ได้รับเกียรติยศ ชื่อเสียง มีคนยกย่องสรรเสริญ โชคลาภเงินทองสมบูรณ์",
+                caution: "ระวังความเย่อหยิ่งทระนงตน และผู้ริษยาในความก้าวหน้า",
+                advice: "ถวายฉัตร ร่ม ร่มยกทรง หรือร่วมปิดทองพระพุทธรูปเพื่อความรุ่งเรือง"
+            },
+            {
+                id: 8,
+                name: "ราหู",
+                icon: "👹",
+                summary: "ตกราหู ให้ระวังเคราะห์กรรม ความเดือดร้อน มืดแปดด้าน ต้องทำบุญสะเดาะเคราะห์",
+                good: "หากทำธุรกิจเกี่ยวกับต่างชาติ งานกลางคืน หรือเงามืด อาจมีโชคใหญ่ไม่คาดฝัน",
+                caution: "ตกเคราะห์ มืดแปดด้าน เสียทรัพย์ เกิดคดีความ ความเดือดร้อนใจ",
+                advice: "ไหว้ราหูด้วยของดำ 8 อย่าง ถวายหลอดไฟ เทียนพรรษา บริจาคค่าน้ำค่าไฟวัด"
+            },
+            {
+                id: 9,
+                name: "ปราสาท",
+                icon: "🏛️",
+                summary: "ตกปราสาท จะได้บ้านเรือน ที่อยู่อาศัย หรือทรัพย์สินชิ้นใหญ่ มีความสุขร่มเย็น",
+                good: "ได้บ้าน ที่ดิน ทรัพย์สินชิ้นใหญ่ มีครอบครัวอบอุ่นร่มเย็นผาสุก",
+                caution: "ระวังเรื่องภาระหนี้สินจากการซื้อทรัพย์สินใหม่ ควรวางแผนการเงินให้ดี",
+                advice: "ร่วมสร้างโบสถ์ วิหาร หรือทำบุญบูรณะหลังคาวัด ถวายกระเบื้องสร้างวัด"
+            },
+            {
+                id: 10,
+                name: "เรือนหลวง",
+                icon: "🏰",
+                summary: "ตกเรือนหลวง จะได้รับความเมตตาจากผู้ใหญ่ มีลาภยศ ทำงานราชการหรือค้าขายจะเจริญรุ่งเรือง",
+                good: "เจริญรุ่งเรืองในหน้าที่การงาน ผู้ใหญ่เมตตาอุปถัมภ์ ค้าขายกำไรดีเยี่ยม",
+                caution: "ต้องรักษาความซื่อสัตย์สุจริต อย่าเอาเปรียบผู้อื่น",
+                advice: "ทำบุญถวายภัตตาหารแด่พระสงฆ์ หรือร่วมทำบุญตักบาตรกุศลใหญ่"
+            },
+            {
+                id: 11,
+                name: "คนคอขาด",
+                icon: "⚔️",
+                summary: "ตกคนคอขาด เป็นตกเคราะห์หนัก ให้ระวังอุบัติเหตุ เลือดตกยางออก ต้องสวดมนต์ทำบุญอย่างมาก",
+                good: "ผ่านพ้นเคราะห์แล้วจะพบกับโชคใหญ่ เปลี่ยนชีวิตไปในทางที่ดีขึ้น",
+                caution: "ระวังอุบัติเหตุร้ายแรง เลือดตกยางออก การผ่าตัด ปากเสียงรุนแรง",
+                advice: "บริจาคเลือด ไถ่ชีวิตโคกระบือ สวดมนต์บทอิติปิโสเรืองฤทธิ์/พาหุงฯ และงดเว้นการเดินทางเสี่ยงภัย"
+            },
+            {
+                id: 12,
+                name: "ฉัตรเงิน",
+                icon: "ทรงฉัตร",
+                summary: "ตกฉัตรเงิน จะได้ลาภผลเงินทอง มีความร่ำรวย อยู่เย็นเป็นสุข",
+                good: "มีโชคลาภเงินทองไหลมาเทมา การเงินคล่องตัว มั่งคั่งอยู่เย็นเป็นสุข",
+                caution: "ระวังการใช้จ่ายเพลินจนเกินตัว หรือคนเข้ามาหยิบยืมเงินทอง",
+                advice: "ทำทานแก่คนยากไร้ บริจาคตู้บริจาคค่าน้ำไฟ หรือทำบุญถวายสังฆทานชุดเงินทอง"
+            }
+        ];
+
+        // Global animation state
+        let isAnimating = false;
+        let currentActiveIndex = 0;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderWheelSlices();
+            updateWheelHighlight(0); // Default highlighting Pagoda
+        });
+
+        // Function to render 12 SVG slices for the destiny wheel
+        function renderWheelSlices() {
+            const group = document.getElementById('wheelSlicesGroup');
+            group.innerHTML = '';
+
+            const cx = 250;
+            const cy = 250;
+            const rOuter = 230;
+            const rInner = 138;
+            const totalSlices = 12;
+
+            // Base rotation: Slot 0 (Pagoda) should be at the bottom center (90 deg in SVG polar coordinates)
+            // Each slice spans 30 deg (360 / 12)
+            for (let i = 0; i < totalSlices; i++) {
+                // Angle for index i (Clockwise layout)
+                // Bottom center = 90 deg. Center of slice 0 is at 90 deg.
+                // Slice 0 start angle = 90 - 15 = 75 deg.
+                const startAngleDeg = 75 + (i * 30);
+                const endAngleDeg = startAngleDeg + 30;
+
+                const startRad = (startAngleDeg * Math.PI) / 180;
+                const endRad = (endAngleDeg * Math.PI) / 180;
+
+                // Path coordinates
+                const x1Outer = cx + rOuter * Math.cos(startRad);
+                const y1Outer = cy + rOuter * Math.sin(startRad);
+                const x2Outer = cx + rOuter * Math.cos(endRad);
+                const y2Outer = cy + rOuter * Math.sin(endRad);
+
+                const x1Inner = cx + rInner * Math.cos(endRad);
+                const y1Inner = cy + rInner * Math.sin(endRad);
+                const x2Inner = cx + rInner * Math.cos(startRad);
+                const y2Inner = cy + rInner * Math.sin(startRad);
+
+                const pathData = [
+                    `M ${x1Outer} ${y1Outer}`,
+                    `A ${rOuter} ${rOuter} 0 0 1 ${x2Outer} ${y2Outer}`,
+                    `L ${x1Inner} ${y1Inner}`,
+                    `A ${rInner} ${rInner} 0 0 0 ${x2Inner} ${y2Inner}`,
+                    'Z'
+                ].join(' ');
+
+
+                // Create Slice Path
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('id', `slice-${i}`);
+                path.setAttribute('class', 'transition-all duration-300 cursor-pointer');
+                
+                // Alternating Subtle Fills
+                const fillColor = i % 2 === 0 ? '#321505' : '#220d03';
+                path.setAttribute('fill', fillColor);
+                path.setAttribute('stroke', '#866304');
+                path.setAttribute('stroke-width', '1');
+
+                // Label & Icon Position (Mid angle)
+                const midRad = ((startAngleDeg + 15) * Math.PI) / 180;
+                const rText = 185;
+                const textX = cx + rText * Math.cos(midRad);
+                const textY = cy + rText * Math.sin(midRad);
+
+                // Group for slice + text
+                const sliceG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                sliceG.appendChild(path);
+
+                // Text Element for Slot Name
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', textX);
+                text.setAttribute('y', textY);
+                text.setAttribute('fill', '#f3e8c8');
+                text.setAttribute('font-size', '11');
+                text.setAttribute('font-weight', '500');
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('dominant-baseline', 'middle');
+                
+                // Rotate text to face center neatly
+                let rotAngle = startAngleDeg + 15 + 90;
+                if (rotAngle > 90 && rotAngle < 270) {
+                    rotAngle += 180; // keep text right side up
+                }
+                text.setAttribute('transform', `rotate(${rotAngle}, ${textX}, ${textY})`);
+                text.textContent = `${i + 1}. ${DESTINY_SLOTS[i].name.split(' ')[0]}`;
+
+                sliceG.appendChild(text);
+                
+                // Click event to view info directly
+                sliceG.addEventListener('click', () => {
+                    if(!isAnimating) highlightAndShowDirect(i);
+                });
+
+                group.appendChild(sliceG);
+            }
+        }
+
+        // Highlight a slice visually on SVG
+        function updateWheelHighlight(index) {
+            currentActiveIndex = index;
+            for (let i = 0; i < 12; i++) {
+                const path = document.getElementById(`slice-${i}`);
+                if (!path) continue;
+                if (i === index) {
+                    path.setAttribute('fill', '#8B0000');
+                    path.setAttribute('stroke', '#FFD700');
+                    path.setAttribute('stroke-width', '3');
+                    path.classList.add('slice-highlight');
+                } else {
+                    path.setAttribute('fill', i % 2 === 0 ? '#321505' : '#220d03');
+                    path.setAttribute('stroke', '#866304');
+                    path.setAttribute('stroke-width', '1');
+                    path.classList.remove('slice-highlight');
+                }
+            }
+
+            // Position Ball indicator on mid of active slice
+            const animBall = document.getElementById('animBall');
+            const midDeg = 75 + (index * 30) + 15;
+            const rad = (midDeg * Math.PI) / 180;
+            const rBall = 230;
+            const bx = 250 + rBall * Math.cos(rad);
+            const by = 250 + rBall * Math.sin(rad);
+            
+            animBall.setAttribute('cx', bx);
+            animBall.setAttribute('cy', by);
+            animBall.classList.remove('opacity-0');
+        }
+
+        function calculateFortune(e) {
+            e.preventDefault();
+            if (isAnimating) return;
+
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('ageInput').value, 10);
+
+            if (isNaN(age) || age < 1) return;
+
+            isAnimating = true;
+            document.getElementById('btnCalculate').disabled = true;
+            document.getElementById('btnCalculate').classList.add('opacity-50');
+
+            // Calculation Rules based on ancient text:
+            // Slot 1 (Pagoda) is at index 0.
+            // Male: Count clockwise (1, 2, 3...) -> index = (age - 1) % 12
+            // Female: Count counter-clockwise (1, 12, 11...) -> index = (12 - ((age - 1) % 12)) % 12
+            
+            let targetIndex = 0;
+            if (gender === 'male') {
+                targetIndex = (age - 1) % 12;
+            } else {
+                targetIndex = (12 - ((age - 1) % 12)) % 12;
+            }
+
+            // Update Direction text in center
+            document.getElementById('centerDirectionText').textContent = gender === 'male' ? 'นับเวียนขวา (ตามเข็ม)' : 'นับเวียนซ้าย (ทวนเข็ม)';
+
+            // Animate step-by-step counting sequence
+            animateCounting(gender, age, targetIndex);
+        }
+
+        function animateCounting(gender, age, finalIndex) {
+            let currentStep = 0;
+            const totalSteps = age;
+            
+            // Calculate step-by-step indices trajectory
+            const stepIndices = [];
+            for (let step = 1; step <= totalSteps; step++) {
+                let idx = 0;
+                if (gender === 'male') {
+                    idx = (step - 1) % 12;
+                } else {
+                    idx = (12 - ((step - 1) % 12)) % 12;
+                }
+                stepIndices.push(idx);
+            }
+
+            // Dynamic interval timing (Faster at start, slowing down near end)
+            let stepDelay = 60; 
+
+            function runStep(i) {
+                if (i >= stepIndices.length) {
+                    // Animation Finished
+                    isAnimating = false;
+                    document.getElementById('btnCalculate').disabled = false;
+                    document.getElementById('btnCalculate').classList.remove('opacity-50');
+                    
+                    displayResult(gender, age, finalIndex);
+                    return;
+                }
+
+                updateWheelHighlight(stepIndices[i]);
+
+                // Speed calculation curve
+                const remaining = stepIndices.length - i;
+                if (remaining < 5) {
+                    stepDelay += 80;
+                } else if (remaining < 10) {
+                    stepDelay += 30;
+                }
+
+                setTimeout(() => runStep(i + 1), Math.min(stepDelay, 400));
+            }
+
+            runStep(0);
+        }
+
+        function displayResult(gender, age, slotIndex) {
+            const data = DESTINY_SLOTS[slotIndex];
+
+            // Hide empty state, show result container
+            document.getElementById('emptyState').classList.add('hidden');
+            const resultContent = document.getElementById('resultContent');
+            resultContent.classList.remove('hidden');
+
+            // Set Badges & Title
+            const genderTh = gender === 'male' ? 'ชาย (เวียนขวา)' : 'หญิง (เวียนซ้าย)';
+            document.getElementById('genderAgeBadge').textContent = `${genderTh} • อายุปัจจุบัน ${age} ปี`;
+            document.getElementById('stepCountBadge').textContent = `ตกช่องที่ ${slotIndex + 1} (นับ ${age} ครั้ง)`;
+
+            document.getElementById('resultIconBox').textContent = data.icon;
+            document.getElementById('resultTitle').textContent = `${slotIndex + 1}. ${data.name}`;
+            
+            // Set Descriptions
+            document.getElementById('resultPrediction').textContent = data.summary;
+            document.getElementById('resultGood').textContent = data.good;
+            document.getElementById('resultCaution').textContent = data.caution;
+            document.getElementById('resultAdvice').textContent = data.advice;
+
+            // Scroll result into view on mobile screens
+            if (window.innerWidth < 1024) {
+                document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Direct click on slice highlight
+        function highlightAndShowDirect(index) {
+            updateWheelHighlight(index);
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            displayResult(gender, "เลือกดู", index);
+        }
+
+        function shareResult() {
+            const title = document.getElementById('resultTitle').textContent;
+            const pred = document.getElementById('resultPrediction').textContent;
+            const badge = document.getElementById('genderAgeBadge').textContent;
+            const advice = document.getElementById('resultAdvice').textContent;
+
+            const textToCopy = `✨ ผลทำนายดวงชะตาประจำปีเกิด (ตำราเจดีย์โบราณ) ✨\n` +
+                               `📌 ข้อมูล: ${badge}\n` +
+                               `🔮 ตกช่อง: ${title}\n` +
+                               `📜 คำทำนาย: ${pred}\n` +
+                               `💡 เสริมดวง: ${advice}\n\n` +
+                               `ตรวจดวงชะตาตามตำราพรหมชาติโบราณ`;
+
+            // Copy to clipboard fallback handler
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => showToast('คัดลอกผลคำทำนายเรียบร้อยแล้ว!'));
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('คัดลอกผลคำทำนายเรียบร้อยแล้ว!');
+                } catch (err) {
+                    showToast('ไม่สามารถคัดลอกได้');
+                }
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
